@@ -64,23 +64,14 @@ CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size, rotation
         y + Math.sin(rotation) * size * 1.5,
     );
 
+    this.strokeStyle = 'rgb(255, 255, 255)';
     this.stroke();
 }
 
 CanvasRenderingContext2D.prototype.drawCircle = function (x, y, radius) {
     this.beginPath();
-
-    // ---
-    // | Circle's center.
-    // ----- v -v
     this.arc(x, y, radius, 0, 2.0 * Math.PI);
-    // ------------------- ^ -^-----------^
-    // | Range at which the circle starts and ends, in radians.
-    // |
-    // | By manipulating these two parameters you can e.g. draw
-    // | only half of a circle, Pac-Man style.
-    // ---
 
-    this.fillStyle = 'rgb(0, 0, 0)';
+    this.fillStyle = 'rgb(0, 255, 128)'; // A nice green colour
     this.fill();
 }
