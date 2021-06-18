@@ -69,15 +69,18 @@ for (const animal of simulation.world().animals) {
     );
 }
 
-function drawTriangle(ctxt, x, y, size) {
-    ctxt.beginPath();
-    ctxt.moveTo(x, y);
-    ctxt.lineTo(x + size, y + size);
-    ctxt.lineTo(x - size, y + size);
-    ctxt.lineTo(x, y);
+// ---
+// | The type of our `ctxt`.
+// v------------------ v
+CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size) {
+    this.beginPath();
+    this.moveTo(x, y);
+    this.lineTo(x + size, y + size);
+    this.lineTo(x - size, y + size);
+    this.lineTo(x, y);
 
-    ctxt.fillStyle = 'rgb(0, 0, 0)';
-    ctxt.fill();
+    this.fillStyle = 'rgb(0, 0, 0)';
+    this.fill();
 }
 
-drawTriangle(ctxt, 50, 0, 50);
+ctxt.drawTriangle(50, 0, 50);
