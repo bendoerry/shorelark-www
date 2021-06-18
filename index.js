@@ -7,5 +7,5 @@ const viewport = new Viewport(document.getElementById('viewport'))
 viewport.clear();
 
 for (const animal of simulation.world().animals) {
-    viewport.drawTriangle(animal.x, animal.y, 0.01);
+    viewport.drawTriangle(animal.x, animal.y, 0.01, animal.rotation);
 }

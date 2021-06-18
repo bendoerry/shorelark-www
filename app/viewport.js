@@ -13,19 +13,17 @@ export class Viewport {
 
         this.context = this.element.getContext('2d');
 
-        // Automatically scales all operations by `viewportScale` - otherwise
-        // we'd have to `* viewportScale` everything by hand
         this.context.scale(pixelRatio, pixelRatio);
 
         this.context.fillStyle = 'rgb(0, 0, 0)';
     }
 
-    drawTriangle(x, y, size) {
+    drawTriangle(x, y, size, rotation) {
         x *= this._width();
         y *= this._height();
         size *= this._width();
 
-        this.context.drawTriangle(x, y, size);
+        this.context.drawTriangle(x, y, size, rotation);
     }
 
     _width() {
@@ -41,12 +39,24 @@ export class Viewport {
     }
 }
 
-CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size) {
+CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size, rotation) {
     this.beginPath();
-    this.moveTo(x, y);
-    this.lineTo(x + size, y + size);
-    this.lineTo(x - size, y + size);
-    this.lineTo(x, y);
+    this.moveTo(
+        x + Math.cos(rotation) * size,
+        y + Math.sin(rotation) * size,
+    );
+    this.lineTo(
+        x + Math.cos(rotation + 2.0 / 3.0 * Math.PI) * size,
+        y + Math.sin(rotation + 2.0 / 3.0 * Math.PI) * size,
+    );
+    this.lineTo(
+        x + Math.cos(rotation + 4.0 / 3.0 * Math.PI) * size,
+        y + Math.sin(rotation + 4.0 / 3.0 * Math.PI) * size,
+    );
+    this.lineTo(
+        x + Math.cos(rotation) * size,
+        y + Math.sin(rotation) * size,
+    );
 
     this.fillStyle = 'rgb(0, 0, 0)';
     this.fill();
