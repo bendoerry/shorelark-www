@@ -42,8 +42,8 @@ export class Viewport {
 CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size, rotation) {
     this.beginPath();
     this.moveTo(
-        x + Math.cos(rotation) * size,
-        y + Math.sin(rotation) * size,
+        x + Math.cos(rotation) * size * 1.5,
+        y + Math.sin(rotation) * size * 1.5,
     );
     this.lineTo(
         x + Math.cos(rotation + 2.0 / 3.0 * Math.PI) * size,
@@ -54,8 +54,8 @@ CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size, rotation
         y + Math.sin(rotation + 4.0 / 3.0 * Math.PI) * size,
     );
     this.lineTo(
-        x + Math.cos(rotation) * size,
-        y + Math.sin(rotation) * size,
+        x + Math.cos(rotation) * size * 1.5,
+        y + Math.sin(rotation) * size * 1.5,
     );
 
     this.fillStyle = 'rgb(0, 0, 0)';
