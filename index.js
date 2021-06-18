@@ -4,8 +4,20 @@ import { Viewport } from "./app/viewport";
 const simulation = new sim.Simulation();
 const viewport = new Viewport(document.getElementById('viewport'))
 
-viewport.clear();
+function redraw() {
+    viewport.clear()
 
-for (const animal of simulation.world().animals) {
-    viewport.drawTriangle(animal.x, animal.y, 0.01, animal.rotation);
+    simulation.step()
+
+    for (const animal of simulation.world().animals) {
+        viewport.drawTriangle(animal.x, animal.y, 0.01, animal.rotation);
+    }
+
+    // requestAnimationFrame() schedules code only for the next frame.
+    //
+    // Because we want for our simulation to continue forever, we've
+    // gotta keep re-scheduling our function:
+    requestAnimationFrame(redraw);
 }
+
+redraw();

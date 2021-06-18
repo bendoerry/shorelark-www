@@ -16,6 +16,8 @@ export class Viewport {
         this.context.scale(pixelRatio, pixelRatio);
 
         this.context.fillStyle = 'rgb(0, 0, 0)';
+
+        this.context.clearRect(0, 0, this._width(), this._height());
     }
 
     drawTriangle(x, y, size, rotation) {
