@@ -9,7 +9,13 @@ function redraw() {
 
     simulation.step()
 
-    for (const animal of simulation.world().animals) {
+    const world = simulation.world();
+
+    for (const food of world.foods) {
+        viewport.drawCircle(food.x, food.y, (0.01 / 2.0));
+    }
+
+    for (const animal of world.animals) {
         viewport.drawTriangle(animal.x, animal.y, 0.01, animal.rotation);
     }
 
