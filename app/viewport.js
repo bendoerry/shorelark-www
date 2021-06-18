@@ -28,16 +28,20 @@ export class Viewport {
         this.context.drawTriangle(x, y, size, rotation);
     }
 
+    drawCircle(x, y, radius) {
+        x *= this._width()
+        y *= this._height();
+        radius *= this._width();
+
+        this.context.drawCircle(x, y, radius)
+    }
+
     _width() {
         return this.element.width;
     }
 
     _height() {
         return this.element.height;
-    }
-
-    Context() {
-        return this.context;
     }
 }
 
@@ -61,4 +65,22 @@ CanvasRenderingContext2D.prototype.drawTriangle = function (x, y, size, rotation
     );
 
     this.stroke();
+}
+
+CanvasRenderingContext2D.prototype.drawCircle = function (x, y, radius) {
+    this.beginPath();
+
+    // ---
+    // | Circle's center.
+    // ----- v -v
+    this.arc(x, y, radius, 0, 2.0 * Math.PI);
+    // ------------------- ^ -^-----------^
+    // | Range at which the circle starts and ends, in radians.
+    // |
+    // | By manipulating these two parameters you can e.g. draw
+    // | only half of a circle, Pac-Man style.
+    // ---
+
+    this.fillStyle = 'rgb(0, 0, 0)';
+    this.fill();
 }
