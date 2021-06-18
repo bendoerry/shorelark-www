@@ -69,3 +69,28 @@ for (const animal of simulation.world().animals) {
     );
 }
 
+// Starts drawing a polygon
+ctxt.beginPath();
+
+// Moves cursor at x=50, y=0
+ctxt.moveTo(50, 0);
+
+// Draws a line from (50,0) to (100,50) and moves cursor there
+// (this gets us the right side of our triangle)
+ctxt.lineTo(100, 50);
+
+// Draws a line from (100,50) to (0,50) and moves cursor there
+// (this gets us the bottom side of our triangle)
+ctxt.lineTo(0, 50);
+
+// Draws a line from (0,50) to (50,0) and moves cursor there
+// (this gets us the left side of our triangle)
+ctxt.lineTo(50, 0);
+
+// Fills our triangle with a black color
+//
+// (there's also `ctxt.stroke();`, which would render only our triangle's
+// outline instead.)
+ctxt.fillStyle = 'rgb(0, 0, 0)';
+ctxt.fill();
+
