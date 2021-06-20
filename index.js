@@ -4,7 +4,7 @@ import { Viewport } from "./app/viewport";
 const simulation = new sim.Simulation();
 
 document.getElementById('train').onclick = function() {
-    simulation.train();
+    console.log(simulation.train());
 }
 
 const viewport = new Viewport(document.getElementById('viewport'))
