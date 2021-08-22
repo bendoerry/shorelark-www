@@ -1,15 +1,17 @@
 export class Viewport {
     constructor(element) {
         this.element = element;
+        this.width = this.element.width;
+        this.height = this.element.height;
     }
 
     clear() {
         const pixelRatio = window.devicePixelRatio || 1;
 
-        this.element.width = this._width() * pixelRatio;
-        this.element.height = this._height() * pixelRatio;
-        this.element.style.width = this._width() + 'px';
-        this.element.style.height = this._height() + 'px';
+        this.element.width = this.width * pixelRatio;
+        this.element.height = this.height * pixelRatio;
+        this.element.style.width = this.width + 'px';
+        this.element.style.height = this.height + 'px';
 
         this.context = this.element.getContext('2d');
 
@@ -17,31 +19,23 @@ export class Viewport {
 
         this.context.fillStyle = 'rgb(0, 0, 0)';
 
-        this.context.clearRect(0, 0, this._width(), this._height());
+        this.context.clearRect(0, 0, this.width, this.height);
     }
 
     drawTriangle(x, y, size, rotation) {
-        x *= this._width();
-        y *= this._height();
-        size *= this._width();
+        x *= this.width;
+        y *= this.height;
+        size *= this.width;
 
         this.context.drawTriangle(x, y, size, rotation);
     }
 
     drawCircle(x, y, radius) {
-        x *= this._width()
-        y *= this._height();
-        radius *= this._width();
+        x *= this.width
+        y *= this.height;
+        radius *= this.width;
 
         this.context.drawCircle(x, y, radius)
-    }
-
-    _width() {
-        return this.element.width;
-    }
-
-    _height() {
-        return this.element.height;
     }
 }
 
